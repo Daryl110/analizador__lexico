@@ -1,2 +1,10 @@
-# analizador__lexico
+# Analizador Lexico
 analizador léxico para realizar el análisis de un lenguaje de programación nuevo.
+
+* <a href="./LICENSE">Licencia</a>
+
+<h2>Automatas</h2>
+
+<ol>
+  <li><a href="./src/Controller/AutomataLogicalOperators.java">Operadores Logicos</a></li>
+</ol>
