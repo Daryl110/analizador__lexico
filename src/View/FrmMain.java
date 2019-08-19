@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controller.CtlLexicalAnalyzer;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -16,6 +17,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Daryl Ospina
  */
 public class FrmMain extends javax.swing.JFrame {
+    
+    private CtlLexicalAnalyzer lexAnalyzerController;
 
     /**
      * Creates new form FrmMain
@@ -23,6 +26,7 @@ public class FrmMain extends javax.swing.JFrame {
     public FrmMain() {
         initComponents();
         this.txtText.setLineWrap(true);
+        this.lexAnalyzerController = new CtlLexicalAnalyzer();
     }
 
     /**
@@ -59,6 +63,11 @@ public class FrmMain extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtText);
 
         btnAnalyze.setText("Analyze");
+        btnAnalyze.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnalyzeActionPerformed(evt);
+            }
+        });
 
         tblTokens.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -160,6 +169,10 @@ public class FrmMain extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnUpladFileActionPerformed
+
+    private void btnAnalyzeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalyzeActionPerformed
+        this.tblTokens.setModel(this.lexAnalyzerController.analyze(this.txtText.getText().trim()));
+    }//GEN-LAST:event_btnAnalyzeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnalyze;
