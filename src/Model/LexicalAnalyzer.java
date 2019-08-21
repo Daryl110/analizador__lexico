@@ -7,6 +7,7 @@ package Model;
 
 import Controller.AutomataArithmeticOperators;
 import Controller.AutomataAssignmentOperators;
+import Controller.AutomataComments;
 import Controller.AutomataDelimiter;
 import Controller.AutomataLogicalOperators;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class LexicalAnalyzer {
     private final Automata delimiters;
     private final Automata assignmentOperators;
     private final Automata arithmeticOperators;
+    private final Automata comments;
 
     public LexicalAnalyzer(String text) {
         this.text = text;
@@ -30,6 +32,7 @@ public class LexicalAnalyzer {
         this.delimiters = new AutomataDelimiter();
         this.assignmentOperators = new AutomataAssignmentOperators();
         this.arithmeticOperators = new AutomataArithmeticOperators();
+        this.comments = new AutomataComments();
     }
 
     public String getText() {
@@ -108,7 +111,7 @@ public class LexicalAnalyzer {
                                     columns = new ArrayList<>();
                                     this.assignmentOperators.clearState();
                                 }
-                            } else if (flag && nextCharacter == '=' && (nextCharacter != character)) {
+                            } else if (flag && nextCharacter == '=') {
                                 flag = this.assignmentOperators.execute(nextCharacter);
                                 if (flag) {
                                     columns.add(column);
@@ -127,16 +130,39 @@ public class LexicalAnalyzer {
                                     }
                                     continue;
                                 }
-                                /* ******** end assignment operators ***************** 
-                                ********* start incremental and decremental operators ****** */ 
-                            }  else if (flag && nextCharacter == character) {
-                                //Operadores incrementales y decrementales
-                                columns.add(column);
-                                columns.add(column + 1);
-                                column += 2;
-                                i += 1;
-                                continue;
-                                /* ********* end incremental and decremental operators ****** */
+                                /* ******** end assignment operators ***************** */
+                            } else if (flag && nextCharacter == character
+                                    || (character == '/' && nextCharacter == '*')
+                                    || (character == '*' && nextCharacter == '/')) {
+                                this.assignmentOperators.clearState();
+                                /**
+                                 * ************ start comments
+                                 * *****************
+                                 */
+                                flag = this.comments.execute(character);
+                                if (flag) {
+                                    flag = this.comments.execute(nextCharacter);
+                                    if (flag) {
+                                        columns.add(column);
+                                        columns.add(column + 1);
+                                        column += 2;
+                                        i += 1;
+                                        if (this.comments.getState() == Automata.COMMENTS_STATES) {
+                                            tokens.add(
+                                                    new Token(
+                                                            new Lexeme(columns, row, this.comments.getWord()),
+                                                            LexemeTypes.COMMENTS
+                                                    )
+                                            );
+                                            columns = new ArrayList<>();
+                                            this.comments.clearState();
+                                        }
+                                    }
+                                    continue;
+                                }
+                                /**
+                                 * ************ end comments *****************
+                                 */
                             } else {
                                 /* ****** start arithmetic operators part 1 ***** */
                                 flag = this.arithmeticOperators.execute(character);
@@ -188,9 +214,9 @@ public class LexicalAnalyzer {
                                 /* ****** start arithmetic operators part 2 ***** */
                             }
                         }
-                        
-                        if(flag == false){
-                            System.out.println("Hola");
+
+                        if (flag == false) {
+
                         }
                     }
                 }

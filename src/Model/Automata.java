@@ -14,6 +14,7 @@ public interface Automata {
     public static int DELIMITERS_STATES = 1;//states for automata of delimiters
     public static int ASSIGNMENT_OPERATOR_STATES = 2;//states for automata of arithmetic operators
     public static int ARITHMETIC_OPERATOR_STATES = 1;//states for automata of arithmetic operators
+    public static int COMMENTS_STATES = 4;//states for automata of arithmetic operators
     
     public abstract boolean execute(char character);
     public abstract String getWord();
