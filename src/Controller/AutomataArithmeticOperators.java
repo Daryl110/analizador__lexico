@@ -42,6 +42,7 @@ public class AutomataArithmeticOperators implements Automata{
     @Override
     public void clearState() {
         this.state = 0;
+        this.word = "";
     }
     
 }

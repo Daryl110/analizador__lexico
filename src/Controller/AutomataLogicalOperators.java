@@ -81,6 +81,7 @@ public class AutomataLogicalOperators implements Automata {
     @Override
     public void clearState() {
         this.state = 0;
+        this.word = "";
     }
    
 }
