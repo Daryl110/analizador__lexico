@@ -11,6 +11,8 @@ package Model;
  */
 public interface Automata {
     public static int LOGICAL_OPERATORS_STATES = 2;//states for automata of logical operators
+    public static int DELIMITERS_STATES = 1;//states for automata of delimiters
+    
     public abstract boolean execute(char character);
     public abstract String getWord();
     public abstract int getState();

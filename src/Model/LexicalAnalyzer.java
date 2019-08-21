@@ -5,6 +5,7 @@
  */
 package Model;
 
+import Controller.AutomataDelimiter;
 import Controller.AutomataLogicalOperators;
 import java.util.ArrayList;
 
@@ -17,10 +18,12 @@ public class LexicalAnalyzer {
     private String text;
     /* Automatas */
     private Automata logicalOperators;
+    private Automata delimiters;
 
     public LexicalAnalyzer(String text) {
         this.text = text;
         this.logicalOperators = new AutomataLogicalOperators();
+        this.delimiters = new AutomataDelimiter();
     }
 
     public String getText() {
@@ -43,7 +46,9 @@ public class LexicalAnalyzer {
                 row += 1;
                 column = 0;
             } else {
-                /************** start Logical operators ******************/
+                /**
+                 * ************ start Logical operators *****************
+                 */
                 bandera = this.logicalOperators.execute(character);
                 if (bandera) {
                     columns.add(column);
@@ -58,7 +63,31 @@ public class LexicalAnalyzer {
                         this.logicalOperators.clearState();
                     }
                 }
-                /************** end Logical operators ******************/
+                /**
+                 * ************ end Logical operators *****************
+                 */
+                /**
+                 * ************ start delimiters **********************
+                 */
+                if (!bandera) {
+                    bandera = this.delimiters.execute(character);
+                    if (bandera) {
+                        columns.add(column);
+                        if (this.delimiters.getState() == Automata.DELIMITERS_STATES) {
+                            tokens.add(
+                                    new Token(
+                                            new Lexeme(columns, row, this.delimiters.getWord()),
+                                            LexemeTypes.DELIMITERS
+                                    )
+                            );
+                            columns = new ArrayList<>();
+                            this.delimiters.clearState();
+                        }
+                    }
+                }
+                /**
+                 * ************ end delimiters **********************
+                 */
                 column += 1;
             }
         }
