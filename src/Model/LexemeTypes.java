@@ -11,5 +11,6 @@ package Model;
  */
 public enum LexemeTypes {
     LOGICAL_OPERATORS, //type logical operators
-    DELIMITERS //type delimiters
+    DELIMITERS, //type delimiters
+    ARITHMETIC_OPERATORS //type arithmetic operators
 }

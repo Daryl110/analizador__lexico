@@ -5,6 +5,7 @@
  */
 package Model;
 
+import Controller.AutomataArithmeticOperators;
 import Controller.AutomataDelimiter;
 import Controller.AutomataLogicalOperators;
 import java.util.ArrayList;
@@ -17,13 +18,15 @@ public class LexicalAnalyzer {
 
     private String text;
     /* Automatas */
-    private Automata logicalOperators;
-    private Automata delimiters;
+    private final Automata logicalOperators;
+    private final Automata delimiters;
+    private final Automata arithmeticOperators;
 
     public LexicalAnalyzer(String text) {
         this.text = text;
         this.logicalOperators = new AutomataLogicalOperators();
         this.delimiters = new AutomataDelimiter();
+        this.arithmeticOperators = new AutomataArithmeticOperators();
     }
 
     public String getText() {
@@ -62,14 +65,13 @@ public class LexicalAnalyzer {
                         columns = new ArrayList<>();
                         this.logicalOperators.clearState();
                     }
-                }
-                /**
+                } /**
                  * ************ end Logical operators *****************
                  */
                 /**
                  * ************ start delimiters **********************
                  */
-                if (!bandera) {
+                else {
                     bandera = this.delimiters.execute(character);
                     if (bandera) {
                         columns.add(column);
@@ -83,11 +85,26 @@ public class LexicalAnalyzer {
                             columns = new ArrayList<>();
                             this.delimiters.clearState();
                         }
+                    } /**
+                     * ************ end delimiters **********************
+                     */
+                    else {
+                        bandera = this.arithmeticOperators.execute(character);
+                        if (bandera) {
+                            columns.add(column);
+                            if (this.arithmeticOperators.getState() == Automata.ARITHMETIC_OPERATOR_STATES) {
+                                tokens.add(
+                                        new Token(
+                                                new Lexeme(columns, row, this.arithmeticOperators.getWord()),
+                                                LexemeTypes.ARITHMETIC_OPERATORS
+                                        )
+                                );
+                                columns = new ArrayList<>();
+                                this.arithmeticOperators.clearState();
+                            }
+                        }
                     }
                 }
-                /**
-                 * ************ end delimiters **********************
-                 */
                 column += 1;
             }
         }
