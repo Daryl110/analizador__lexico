@@ -9,5 +9,5 @@ analizador léxico para realizar el análisis de un lenguaje de programación nu
 <ol>
   <li><a href="./src/Controller/AutomataLogicalOperators.java">Operadores Logicos</a></li>
   <li><a href="./src/Controller/AutomataDelimiter.java">Delimitadores</a></li>
-  <li><a href="./src/Controller/AutomataArithmeticOperators.java">Delimitadores</a></li>
+  <li><a href="./src/Controller/AutomataArithmeticOperators.java">Operadores Aritmeticos</a></li>
 </ol>
