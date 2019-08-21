@@ -186,6 +186,10 @@ public class LexicalAnalyzer {
                                 /* ****** start arithmetic operators part 2 ***** */
                             }
                         }
+                        
+                        if(flag == false){
+                            System.out.println("Hola");
+                        }
                     }
                 }
                 column += 1;

@@ -55,6 +55,7 @@ public class AutomataAssignmentOperators implements Automata {
     @Override
     public void clearState() {
         this.state = 0;
+        this.word = "";
     }
 
 }
