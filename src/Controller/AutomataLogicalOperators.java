@@ -29,7 +29,7 @@ public class AutomataLogicalOperators implements Automata {
             } else if (character == '!') {
                 this.word = character + "";
                 this.state = 2;
-                this.previousCharacter = '0';
+                this.previousCharacter = '\u0000';
                 flag = true;
             }
         } else {
@@ -38,11 +38,11 @@ public class AutomataLogicalOperators implements Automata {
                     if (character == '&') {
                         this.word += character;
                         this.state = 2;
-                        this.previousCharacter = '0';
+                        this.previousCharacter = '\u0000';
                         flag = true;
                     } else {
                         this.word = "";
-                        this.previousCharacter = '0';
+                        this.previousCharacter = '\u0000';
                         this.state = 0;
                     }
                     break;
@@ -50,17 +50,17 @@ public class AutomataLogicalOperators implements Automata {
                     if (character == '|') {
                         this.word += character;
                         this.state = 2;
-                        this.previousCharacter = '0';
+                        this.previousCharacter = '\u0000';
                         flag = true;
                     } else {
                         this.word = "";
-                        this.previousCharacter = '0';
+                        this.previousCharacter = '\u0000';
                         this.state = 0;
                     }
                     break;
                 default:
                     this.word = "";
-                    this.previousCharacter = '0';
+                    this.previousCharacter = '\u0000';
                     this.state = 0;
                     break;
             }

@@ -96,7 +96,7 @@ public class LexicalAnalyzer {
                             char nextCharacter = this.text.charAt(i + 1);
                             /* ******** start assignment operators ****** */
                             flag = this.assignmentOperators.execute(character);
-                            if (flag && character == '=') {
+                            if (flag && character == '=' && (nextCharacter != character)) {
                                 columns.add(column);
                                 if (this.assignmentOperators.getState() == Automata.ASSIGNMENT_OPERATOR_STATES) {
                                     tokens.add(
@@ -108,7 +108,7 @@ public class LexicalAnalyzer {
                                     columns = new ArrayList<>();
                                     this.assignmentOperators.clearState();
                                 }
-                            } else if (flag && nextCharacter == '=') {
+                            } else if (flag && nextCharacter == '=' && (nextCharacter != character)) {
                                 flag = this.assignmentOperators.execute(nextCharacter);
                                 if (flag) {
                                     columns.add(column);
@@ -127,7 +127,9 @@ public class LexicalAnalyzer {
                                     }
                                     continue;
                                 }
-                            } /* ******** end assignment operators ***************** */ /* ********* start incremental and decremental operators ****** */ else if (flag && nextCharacter == character) {
+                                /* ******** end assignment operators ***************** 
+                                ********* start incremental and decremental operators ****** */ 
+                            }  else if (flag && nextCharacter == character) {
                                 //Operadores incrementales y decrementales
                                 columns.add(column);
                                 columns.add(column + 1);
