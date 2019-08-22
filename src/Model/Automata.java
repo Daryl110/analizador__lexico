@@ -12,9 +12,10 @@ package Model;
 public interface Automata {
     public static int LOGICAL_OPERATORS_STATES = 2;//states for automata of logical operators
     public static int DELIMITERS_STATES = 1;//states for automata of delimiters
-    public static int ASSIGNMENT_OPERATOR_STATES = 2;//states for automata of arithmetic operators
+    public static int ASSIGNMENT_OPERATOR_STATES = 2;//states for automata of assignment operators
     public static int ARITHMETIC_OPERATOR_STATES = 1;//states for automata of arithmetic operators
-    public static int COMMENTS_STATES = 4;//states for automata of arithmetic operators
+    public static int COMMENTS_STATES = 4;//states for automata of comments
+    public static int FUNCTIONS_STATES = 8;//states for automata of functions
     
     public abstract boolean execute(char character);
     public abstract String getWord();

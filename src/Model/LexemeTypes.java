@@ -14,5 +14,6 @@ public enum LexemeTypes {
     DELIMITERS, //type delimiters
     ASSIGNMENT_OPERATORS, //type assignment operators
     ARITHMETIC_OPERATORS, //type arithmetic operators
-    COMMENTS //type comments
+    COMMENTS, //type comments
+    FUNCTIONS //type functions
 }

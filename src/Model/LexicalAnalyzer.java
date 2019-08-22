@@ -9,6 +9,7 @@ import Controller.AutomataArithmeticOperators;
 import Controller.AutomataAssignmentOperators;
 import Controller.AutomataComments;
 import Controller.AutomataDelimiter;
+import Controller.AutomataFunctions;
 import Controller.AutomataLogicalOperators;
 import java.util.ArrayList;
 
@@ -25,6 +26,7 @@ public class LexicalAnalyzer {
     private final Automata assignmentOperators;
     private final Automata arithmeticOperators;
     private final Automata comments;
+    private final Automata functions;
 
     public LexicalAnalyzer(String text) {
         this.text = text;
@@ -33,6 +35,7 @@ public class LexicalAnalyzer {
         this.assignmentOperators = new AutomataAssignmentOperators();
         this.arithmeticOperators = new AutomataArithmeticOperators();
         this.comments = new AutomataComments();
+        this.functions = new AutomataFunctions();
     }
 
     public String getText() {
@@ -133,8 +136,10 @@ public class LexicalAnalyzer {
                                 /* ******** end assignment operators ***************** */
                             } else if (flag && nextCharacter == character
                                     || (character == '/' && nextCharacter == '*')
-                                    || (character == '*' && nextCharacter == '/')) {
+                                    || (character == '*' && nextCharacter == '/')
+                                    || (character == '-' && nextCharacter == '>')) {
                                 this.assignmentOperators.clearState();
+                                this.functions.clearState();
                                 /**
                                  * ************ start comments
                                  * *****************
@@ -159,10 +164,33 @@ public class LexicalAnalyzer {
                                         }
                                     }
                                     continue;
+                                    /**
+                                     * ************ end comments
+                                     * *****************
+                                     */
+                                } else {
+                                    flag = this.functions.execute(character);
+                                    if (flag) {
+                                        flag = this.functions.execute(nextCharacter);
+                                        if (flag) {
+                                            columns.add(column);
+                                            columns.add(column + 1);
+                                            column += 2;
+                                            i += 1;
+                                            if (this.functions.getState() == Automata.FUNCTIONS_STATES) {
+                                                tokens.add(
+                                                        new Token(
+                                                                new Lexeme(columns, row, this.functions.getWord()),
+                                                                LexemeTypes.FUNCTIONS
+                                                        )
+                                                );
+                                                columns = new ArrayList<>();
+                                                this.functions.clearState();
+                                            }
+                                        }
+                                        continue;
+                                    }
                                 }
-                                /**
-                                 * ************ end comments *****************
-                                 */
                             } else {
                                 /* ****** start arithmetic operators part 1 ***** */
                                 flag = this.arithmeticOperators.execute(character);
@@ -216,7 +244,23 @@ public class LexicalAnalyzer {
                         }
 
                         if (flag == false) {
-
+                            flag = this.functions.execute(character);
+                            if (flag) {
+                                columns.add(column);
+                                if (this.functions.getState() == Automata.FUNCTIONS_STATES) {
+                                    tokens.add(
+                                            new Token(
+                                                    new Lexeme(columns, row, this.functions.getWord()),
+                                                    LexemeTypes.FUNCTIONS
+                                            )
+                                    );
+                                    columns = new ArrayList<>();
+                                    this.functions.clearState();
+                                }
+                            }else if (!flag && this.functions.getState() > 0) {
+                                this.functions.clearState();
+                                columns.remove(columns.size()-1);
+                            }
                         }
                     }
                 }
