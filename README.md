@@ -7,15 +7,14 @@ analizador léxico para realizar el análisis de un lenguaje de programación nu
 <h2>Automatas</h2>
 
 <ol>
-  <li><a href="./src/Controller/Automatas/AutomataLogicalOperators.java">Operadores Logicos</a></li>
-  <li><a href="./src/Controller/Automatas/AutomataDelimiter.java">Delimitadores</a></li>
-  <li><a href="./src/Controller/Automatas/AutomataArithmeticOperators.java">Operadores Aritmeticos</a></li>
-  <li><a href="./src/Controller/Automatas/AutomataAssignmentOperators.java">Operadores de Asignación</a></li>
-  <li><a href="./src/Controller/Automatas/AutomataComments.java">Comentarios</a></li>
-  <li><a href="./src/Controller/Automatas/AutomataFunctions.java">Funciones</a></li>
-  <li><a href="./src/Controller/Automatas/AutomataSelectiveControlStructures.java">Estructuras de control selectivas</a></li>
-  <li><a href="./src/Controller/Automatas/AutomataIncrementalDecrementalOperators.java">Operadores Incrementales y Decrementales</a></li>
-  <li><a href="./src/Controller/Automatas/AutomataRelationalOperators.java">Operadores Relacionales</a></li>
-  <li><a href="./src/Controller/Automatas/AutomataGroupingSymbols.java">Simbolos de Agrupación</a></li>
-  <li><a href="./src/Controller/Automatas/AutomataChains.java">Cadenas</a></li>
+  <li><a href="./src/Controller/Automatas/A_DataTypes.java">Operadores Logicos</a></li>
+  <li><a href="./src/Controller/Automatas/A_Delimiters.java">Delimitadores</a></li>
+  <li><a href="./src/Controller/Automatas/A_Functions.java">Operadores Aritmeticos</a></li>
+  <li><a href="./src/Controller/Automatas/A_GroupingSymbols.java">Operadores de Asignación</a></li>
+  <li><a href="./src/Controller/Automatas/A_Identifiers.java">Comentarios</a></li>
+  <li><a href="./src/Controller/Automatas/A_IterativeControlStructure.java">Funciones</a></li>
+  <li><a href="./src/Controller/Automatas/A_SelectiveControlStructure.java">Estructuras de control selectivas</a></li>
+  <li><a href="./src/Controller/Automatas/A_Numbers.java">Operadores Incrementales y Decrementales</a></li>
+  <li><a href="./src/Controller/Automatas/A_Others.java">Operadores Relacionales</a></li>
+  
 </ol>
