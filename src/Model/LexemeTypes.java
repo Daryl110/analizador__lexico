@@ -22,6 +22,7 @@ public class LexemeTypes {
     public static String LOGICAL_OPERATORS = "Logical Operators";
     public static String RELATIONAL_OPERATORS = "Relational Operators";
     public static String INCREMENTAL_AND_DECREMENTAL_OPERATORS = "Incremental and Decremental Operators";
+    public static String ASSIGNMENT_OPERATORS = "Assignment Operators";
     public static String COMMENTS = "Comments";
     public static String STRINGS = "Strings";
     public static String IDENTIFIERS = "Identirfiers";
