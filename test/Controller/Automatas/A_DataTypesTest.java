@@ -20,6 +20,7 @@ public class A_DataTypesTest {
     
     @Test
     public void testExecuteSuccess() {
+        System.out.println("Automata Tipos de Datos (SuccessTest).....");
         String word = "any";
         
         A_DataTypes instance = new A_DataTypes();
@@ -30,6 +31,7 @@ public class A_DataTypesTest {
     
     @Test
     public void testExecuteFail() {
+        System.out.println("Automata Tipos de Datos (FailTest).....");
         String word = "anywhere";
         
         A_DataTypes instance = new A_DataTypes();

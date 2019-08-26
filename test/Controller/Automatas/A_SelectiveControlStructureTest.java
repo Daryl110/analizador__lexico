@@ -20,6 +20,7 @@ public class A_SelectiveControlStructureTest {
     
     @Test
     public void testExecuteSuccess() {
+        System.out.println("Automata Estructuras de control selectivas (SuccessTest).....");
         String word = "if";
         
         A_SelectiveControlStructure instance = new A_SelectiveControlStructure();
@@ -30,6 +31,7 @@ public class A_SelectiveControlStructureTest {
     
     @Test
     public void testExecuteFail() {
+        System.out.println("Automata Estructuras de control selectivas (FailTest).....");
         String word = "ifo";
         
         A_SelectiveControlStructure instance = new A_SelectiveControlStructure();

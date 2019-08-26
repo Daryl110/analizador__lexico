@@ -13,17 +13,17 @@ import static org.junit.Assert.*;
  *
  * @author Daryl Ospina
  */
-public class A_NumbersTest {
+public class A_IncrementalDecrementalOperatorsTest {
     
-    public A_NumbersTest() {
+    public A_IncrementalDecrementalOperatorsTest() {
     }
-        
+    
     @Test
     public void testExecuteSuccess() {
-        System.out.println("Automata Numeros (SuccessTest).....");
-            String word = "1005550050050.51511648646546";
+        System.out.println("Automata Operadores Incrementales y Decrementales (SuccessTest).....");
+        String word = "++";
         
-        A_Numbers instance = new A_Numbers();
+        A_IncrementalDecrementalOperators instance = new A_IncrementalDecrementalOperators();
         Lexeme result = instance.execute(word, 0, 0);
         
         assertEquals(true, (result instanceof Lexeme));
@@ -31,10 +31,10 @@ public class A_NumbersTest {
     
     @Test
     public void testExecuteFail() {
-        System.out.println("Automata Numeros (FailTest).....");
-        String word = "1.";
+        System.out.println("Automata Operadores Incrementales y Decrementales (FailTest).....");
+        String word = "+";
         
-        A_Numbers instance = new A_Numbers();
+        A_IncrementalDecrementalOperators instance = new A_IncrementalDecrementalOperators();
         Lexeme result = instance.execute(word, 0, 0);
         
         assertNotEquals(true, (result instanceof Lexeme));

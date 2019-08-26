@@ -30,25 +30,25 @@ import java.util.ArrayList;
 public class LexicalAnalyzer {
 
     private String text;
-    private ArrayList<Lexeme> lexemes;
+    private final ArrayList<Lexeme> lexemes;
 
     /* Automatas */
-    private A_IterativeControlStructure aIterativeControlStructure;
-    private A_DataTypes aDataTypes;
-    private A_Functions aFunctions;
-    private A_Others aOther;
-    private A_SelectiveControlStructure aSelectiveStructures;
-    private A_Identifiers aIdentifiers;
-    private A_Numbers aNumbers;
-    private A_Delimiters aDelimiters;
-    private A_GroupingSymbols aGroupingSymbols;
-    private A_ArithmeticOperators aArithmeticOperator;
-    private A_LogicalOperators aLogicalOperators;
-    private A_RelationalOperators a_RelationalOperators;
-    private A_AssignmentOperators a_AssignmentOperators;
-    private A_IncrementalDecrementalOperators a_IncrementalDecrementalOperators;
-    private A_Comments a_Comments;
-    private A_String a_String;
+    private final A_IterativeControlStructure aIterativeControlStructure;
+    private final A_DataTypes aDataTypes;
+    private final A_Functions aFunctions;
+    private final A_Others aOther;
+    private final A_SelectiveControlStructure aSelectiveStructures;
+    private final A_Identifiers aIdentifiers;
+    private final A_Numbers aNumbers;
+    private final A_Delimiters aDelimiters;
+    private final A_GroupingSymbols aGroupingSymbols;
+    private final A_ArithmeticOperators aArithmeticOperator;
+    private final A_LogicalOperators aLogicalOperators;
+    private final A_RelationalOperators a_RelationalOperators;
+    private final A_AssignmentOperators a_AssignmentOperators;
+    private final A_IncrementalDecrementalOperators a_IncrementalDecrementalOperators;
+    private final A_Comments a_Comments;
+    private final A_String a_String;
 
     public LexicalAnalyzer(String text) {
         this.text = text + " ";
@@ -95,6 +95,17 @@ public class LexicalAnalyzer {
                     || character == '_'
                     || character == '.') {
                 word += character;
+                if (lexeme == null && word.length() == 1 && !Character.isLetter(character)
+                    && !Character.isDigit(character)) {
+                    if (character != ' ') {
+                        lexeme = new Lexeme(row, column + 1, word, LexemeTypes.ERRORS);
+                        if (lexeme != null) {
+                            this.lexemes.add(lexeme);
+                            word = "";
+                            lexeme = null;
+                        }
+                    }
+                }
             } else if (!Character.isLetter(character)
                     || !Character.isDigit(character)
                     || character != '_'
@@ -150,7 +161,6 @@ public class LexicalAnalyzer {
                             if (lexeme != null) {
                                 this.lexemes.add(lexeme);
                             } else {
-                                //Operadores relaciones
                                 if (character == '!' && this.text.charAt(i + 1) == '='
                                         || character == '<' && this.text.charAt(i + 1) == '='
                                         || character == '>' && this.text.charAt(i + 1) == '='
@@ -181,6 +191,23 @@ public class LexicalAnalyzer {
                         }
                     }
                 }
+                
+                if (lexeme == null && word.equals("") && !Character.isLetter(character)
+                    && !Character.isDigit(character) && character != '\n') {
+                    if (character != ' ') {
+                        word = character + "";
+                        if (column == -1) {
+                            column = 0;
+                        }
+                        lexeme = new Lexeme(row, column, word, LexemeTypes.ERRORS);
+                        if (lexeme != null) {
+                            this.lexemes.add(lexeme);
+                            word = "";
+                            lexeme = null;
+                        }
+                    }
+                }
+
                 word = "";
             } else {
                 validate(lexeme, word, row, column);
@@ -197,7 +224,7 @@ public class LexicalAnalyzer {
         return lexemes;
     }
 
-    public void validate(Lexeme lexeme, String word, int row, int column) {
+    private void validate(Lexeme lexeme, String word, int row, int column) {
         lexeme = this.aIterativeControlStructure.execute(word, row, column);
         if (lexeme != null) {
             this.lexemes.add(lexeme);

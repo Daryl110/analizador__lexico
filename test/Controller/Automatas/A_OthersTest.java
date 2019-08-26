@@ -20,6 +20,7 @@ public class A_OthersTest {
         
     @Test
     public void testExecuteSuccess() {
+        System.out.println("Automata Otros (SuccessTest).....");
         String word = "NaN";
         
         A_Others instance = new A_Others();
@@ -30,6 +31,7 @@ public class A_OthersTest {
     
     @Test
     public void testExecuteFail() {
+        System.out.println("Automata Otros (FailTest).....");
         String word = "NaNa";
         
         A_Others instance = new A_Others();

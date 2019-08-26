@@ -20,6 +20,7 @@ public class A_IterativeControlStructureTest {
     
     @Test
     public void testExecuteSuccess() {
+        System.out.println("Automata Estructuras de control iterativas (SuccessTest).....");
         String word = "for";
         
         A_IterativeControlStructure instance = new A_IterativeControlStructure();
@@ -30,6 +31,7 @@ public class A_IterativeControlStructureTest {
     
     @Test
     public void testExecuteFail() {
+        System.out.println("Automata Estructuras de control iterativas (FailTest).....");
         String word = "fori";
         
         A_IterativeControlStructure instance = new A_IterativeControlStructure();

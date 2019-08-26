@@ -14,7 +14,13 @@ analizador léxico para realizar el análisis de un lenguaje de programación nu
   <li><a href="./src/Controller/Automatas/A_Identifiers.java">Identificadores</a></li>
   <li><a href="./src/Controller/Automatas/A_IterativeControlStructure.java">Estructuras de control iterativas</a></li>
   <li><a href="./src/Controller/Automatas/A_SelectiveControlStructure.java">Estructuras de control selectivas</a></li>
+  <li><a href="./src/Controller/Automatas/A_ArithmeticOperators.java">Operadores Aritmeticos</a></li>
+  <li><a href="./src/Controller/Automatas/A_AssignmentOperators.java">Operadores de Asignación</a></li>
+  <li><a href="./src/Controller/Automatas/A_IncrementalDecrementalOperators.java">Operadores de incrementación y decrementación</a></li>
+  <li><a href="./src/Controller/Automatas/A_LogicalOperators.java">Operadores Logicos</a></li>
+  <li><a href="./src/Controller/Automatas/A_RelationalOperators.java">Operadores Relacionales</a></li>
+  <li><a href="./src/Controller/Automatas/A_Comments.java">Comentarios</a></li>
+  <li><a href="./src/Controller/Automatas/A_String.java">Cadenas</a></li>
   <li><a href="./src/Controller/Automatas/A_Numbers.java">Numeros</a></li>
   <li><a href="./src/Controller/Automatas/A_Others.java">Otros</a></li>
-  
 </ol>

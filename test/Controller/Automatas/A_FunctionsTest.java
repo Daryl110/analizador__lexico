@@ -20,6 +20,7 @@ public class A_FunctionsTest {
     
     @Test
     public void testExecuteSuccess() {
+        System.out.println("Automata Funciones (SuccessTest).....");
         String word = "void";
         
         A_Functions instance = new A_Functions();
@@ -30,6 +31,7 @@ public class A_FunctionsTest {
     
     @Test
     public void testExecuteFail() {
+        System.out.println("Automata Funciones (FailTest).....");
         String word = "voido";
         
         A_Functions instance = new A_Functions();

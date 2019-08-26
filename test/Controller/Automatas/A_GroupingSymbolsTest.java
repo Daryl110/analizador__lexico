@@ -20,6 +20,7 @@ public class A_GroupingSymbolsTest {
      
     @Test
     public void testExecuteSuccess() {
+        System.out.println("Automata Simbolos de Agrupación (SuccessTest).....");
         String word = ";";
         
         A_Delimiters instance = new A_Delimiters();
@@ -30,6 +31,7 @@ public class A_GroupingSymbolsTest {
     
     @Test
     public void testExecuteFail() {
+        System.out.println("Automata Simbolos de Agrupación (FailTest).....");
         String word = ":";
         
         A_Delimiters instance = new A_Delimiters();

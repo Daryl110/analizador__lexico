@@ -20,6 +20,7 @@ public class A_DelimitersTest {
      
     @Test
     public void testExecuteSuccess() {
+        System.out.println("Automata Delimitadores (SuccessTest).....");
         String word = "(";
         
         A_GroupingSymbols instance = new A_GroupingSymbols();
@@ -30,6 +31,7 @@ public class A_DelimitersTest {
     
     @Test
     public void testExecuteFail() {
+        System.out.println("Automata Delimitadores (FailTest).....");
         String word = "-";
         
         A_GroupingSymbols instance = new A_GroupingSymbols();

@@ -20,6 +20,7 @@ public class A_IdentifiersTest {
         
     @Test
     public void testExecuteSuccess() {
+        System.out.println("Automata Identificadores (SuccessTest).....");
         String word = "variable_1";
         
         A_Identifiers instance = new A_Identifiers();
@@ -30,6 +31,7 @@ public class A_IdentifiersTest {
     
     @Test
     public void testExecuteFail() {
+        System.out.println("Automata Identificadores (FailTest).....");
         String word = "1_variable";
         
         A_Identifiers instance = new A_Identifiers();

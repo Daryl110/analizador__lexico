@@ -27,5 +27,6 @@ public class LexemeTypes {
     public static String STRINGS = "Strings";
     public static String IDENTIFIERS = "Identirfiers";
     public static String NUMBERS = "Numbers";
+    public static String ERRORS = "Errors";
     
 }
