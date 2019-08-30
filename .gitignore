@@ -1,5 +1,6 @@
-# Created by https://www.gitignore.io/api/java,windows,netbeans
-# Edit at https://www.gitignore.io/?templates=java,windows,netbeans
+
+# Created by https://www.gitignore.io/api/java,gradle,windows,netbeans
+# Edit at https://www.gitignore.io/?templates=java,gradle,windows,netbeans
 
 ### Java ###
 # Compiled class file
@@ -62,4 +63,22 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.gitignore.io/api/java,windows,netbeans
+### Gradle ###
+.gradle
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
+# gradle/wrapper/gradle-wrapper.properties
+
+### Gradle Patch ###
+**/build/
+
+# End of https://www.gitignore.io/api/java,gradle,windows,netbeans
