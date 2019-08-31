@@ -32,7 +32,7 @@ public class A_DelimitersTest {
     @Test
     public void testExecuteFail() {
         System.out.println("Automata Delimitadores (FailTest).....");
-        String word = ":";
+        String word = "}";
         
         A_Delimiters instance = new A_Delimiters();
         Lexeme result = instance.execute(word, 0, 0);
