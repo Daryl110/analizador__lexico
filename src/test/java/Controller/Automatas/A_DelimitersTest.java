@@ -21,9 +21,9 @@ public class A_DelimitersTest {
     @Test
     public void testExecuteSuccess() {
         System.out.println("Automata Delimitadores (SuccessTest).....");
-        String word = "(";
+        String word = ";";
         
-        A_GroupingSymbols instance = new A_GroupingSymbols();
+        A_Delimiters instance = new A_Delimiters();
         Lexeme result = instance.execute(word, 0, 0);
         
         assertEquals(true, (result instanceof Lexeme));
@@ -32,9 +32,9 @@ public class A_DelimitersTest {
     @Test
     public void testExecuteFail() {
         System.out.println("Automata Delimitadores (FailTest).....");
-        String word = "-";
+        String word = ":";
         
-        A_GroupingSymbols instance = new A_GroupingSymbols();
+        A_Delimiters instance = new A_Delimiters();
         Lexeme result = instance.execute(word, 0, 0);
         
         assertNotEquals(true, (result instanceof Lexeme));
