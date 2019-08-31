@@ -21,9 +21,9 @@ public class A_GroupingSymbolsTest {
     @Test
     public void testExecuteSuccess() {
         System.out.println("Automata Simbolos de Agrupación (SuccessTest).....");
-        String word = ";";
+        String word = "{";
         
-        A_Delimiters instance = new A_Delimiters();
+        A_GroupingSymbols instance = new A_GroupingSymbols();
         Lexeme result = instance.execute(word, 0, 0);
         
         assertEquals(true, (result instanceof Lexeme));
@@ -34,7 +34,7 @@ public class A_GroupingSymbolsTest {
         System.out.println("Automata Simbolos de Agrupación (FailTest).....");
         String word = ":";
         
-        A_Delimiters instance = new A_Delimiters();
+        A_GroupingSymbols instance = new A_GroupingSymbols();
         Lexeme result = instance.execute(word, 0, 0);
         
         assertNotEquals(true, (result instanceof Lexeme));
