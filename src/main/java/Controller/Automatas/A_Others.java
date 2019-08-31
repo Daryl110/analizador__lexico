@@ -22,6 +22,8 @@ public class A_Others implements Automata{
             case "break":
             case "continue":
             case "NaN":
+            case "true":
+            case "false":
                 return new Lexeme(row, column, word, LexemeTypes.OTHERS);
         }
         return null;

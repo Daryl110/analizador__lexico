@@ -20,6 +20,7 @@ public class A_Delimiters implements Automata{
         switch (word) {
             case ";":
             case ",":
+            case ":":
                 return new Lexeme(row, column, word, LexemeTypes.DELIMITERS);
         }
         return null;
