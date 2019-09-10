@@ -24,6 +24,7 @@ public class A_AssignmentOperators implements Automata {
             case "/=":
             case "=":
             case "%=":
+            case "^=":
                 return new Lexeme(row, column, word, LexemeTypes.ASSIGNMENT_OPERATORS);
         }
         return null;

@@ -14,8 +14,9 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Daryl Ospina
  */
-public class CtlLexicalAnalyzer {
+public class LexicalAnalyzerController {
 
+    public static ArrayList<Lexeme> lexemes = new ArrayList<>();
     private LexicalAnalyzer lexicalAnalyzer;
 
     public DefaultTableModel analyze(String text) {
@@ -26,7 +27,7 @@ public class CtlLexicalAnalyzer {
         model.addColumn("Positions");
         
         this.lexicalAnalyzer = new LexicalAnalyzer(text);
-        ArrayList<Lexeme> lexemes = this.lexicalAnalyzer.analyze();
+        this.lexemes = this.lexicalAnalyzer.analyze();
         
         lexemes.forEach((lexeme) -> {
             model.addRow(new Object[]{

@@ -30,25 +30,25 @@ import java.util.ArrayList;
 public class LexicalAnalyzer {
 
     private String text;
-    private ArrayList<Lexeme> lexemes;
+    private final ArrayList<Lexeme> lexemes;
 
     /* Automatas */
-    private A_IterativeControlStructure aIterativeControlStructure;
-    private A_DataTypes aDataTypes;
-    private A_Functions aFunctions;
-    private A_Others aOther;
-    private A_SelectiveControlStructure aSelectiveStructures;
-    private A_Identifiers aIdentifiers;
-    private A_Numbers aNumbers;
-    private A_Delimiters aDelimiters;
-    private A_GroupingSymbols aGroupingSymbols;
-    private A_ArithmeticOperators aArithmeticOperator;
-    private A_LogicalOperators aLogicalOperators;
-    private A_RelationalOperators a_RelationalOperators;
-    private A_AssignmentOperators a_AssignmentOperators;
-    private A_IncrementalDecrementalOperators a_IncrementalDecrementalOperators;
-    private A_Comments a_Comments;
-    private A_String a_String;
+    private final A_IterativeControlStructure aIterativeControlStructure;
+    private final A_DataTypes aDataTypes;
+    private final A_Functions aFunctions;
+    private final A_Others aOther;
+    private final A_SelectiveControlStructure aSelectiveStructures;
+    private final A_Identifiers aIdentifiers;
+    private final A_Numbers aNumbers;
+    private final A_Delimiters aDelimiters;
+    private final A_GroupingSymbols aGroupingSymbols;
+    private final A_ArithmeticOperators aArithmeticOperator;
+    private final A_LogicalOperators aLogicalOperators;
+    private final A_RelationalOperators a_RelationalOperators;
+    private final A_AssignmentOperators a_AssignmentOperators;
+    private final A_IncrementalDecrementalOperators a_IncrementalDecrementalOperators;
+    private final A_Comments a_Comments;
+    private final A_String a_String;
 
     public LexicalAnalyzer(String text) {
         this.text = text + " ";
@@ -102,17 +102,17 @@ public class LexicalAnalyzer {
                 if (!word.isEmpty()) {
                     String example = word + character;
                     if (example.contains("@")
-                            || example.contains("Â°")
-                            || example.contains("Â¬")
+                            || example.contains("°")
+                            || example.contains("¬")
                             || example.contains("#")
                             || example.contains("$")
                             || example.contains("?")
-                            || example.contains("Â¡")
-                            || example.contains("Â¿")
+                            || example.contains("¡")
+                            || example.contains("¿")
                             || example.contains("~")
                             || example.contains("`")
-                            || example.contains("Â´")
-                            || example.contains("Â¬")) {
+                            || example.contains("´")
+                            || example.contains("¬")) {
                         lexeme = new Lexeme(row, column, word+character, "Error");
                         this.lexemes.add(lexeme);
                         lexeme = null;

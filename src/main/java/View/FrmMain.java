@@ -5,7 +5,7 @@
  */
 package View;
 
-import Controller.CtlLexicalAnalyzer;
+import Controller.LexicalAnalyzerController;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -18,7 +18,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class FrmMain extends javax.swing.JFrame {
     
-    private CtlLexicalAnalyzer lexAnalyzerController;
+    private LexicalAnalyzerController lexAnalyzerController;
 
     /**
      * Creates new form FrmMain
@@ -26,7 +26,7 @@ public class FrmMain extends javax.swing.JFrame {
     public FrmMain() {
         initComponents();
         this.txtText.setLineWrap(true);
-        this.lexAnalyzerController = new CtlLexicalAnalyzer();
+        this.lexAnalyzerController = new LexicalAnalyzerController();
     }
 
     /**
