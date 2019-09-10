@@ -6,7 +6,7 @@ analizador léxico para realizar el análisis de un lenguaje de programación nu
 - <a href="./.circleci/config.yml">CircleCI</a>
 - <a href="./LICENSE">Licencia</a>
 
-<h2>Automatas</h2>
+<h2><a href="https://github.com/Daryl110/analizador__lexico/wiki/Autómatas">Automatas</a></h2>(click para ver en detalle los automatas graficamente)
 
 <ol>
   <li><a href="./src/main/java/Controller/Automatas/A_DataTypes.java">Tipos de Datos</a></li>
