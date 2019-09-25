@@ -25,7 +25,7 @@ public class LexicalAnalyzerTest {
                 "number variable_1 = 15;\n"+
                 "if(number >= 0){"+
                 "  any funcion = () -> {return number > 0}"+
-                "} ??$");
+                "}");
         
         ArrayList<Lexeme> result = instance.analyze();
         

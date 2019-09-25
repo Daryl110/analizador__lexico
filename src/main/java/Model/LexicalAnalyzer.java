@@ -93,17 +93,16 @@ public class LexicalAnalyzer {
                     || character == '_'
                     || character == '.') {
                 word += character;
-            } else if (character == '@'
-                    || character == '°'
-                    || character == '¬'
-                    || character == '#'
-                    || character == '$'
-                    || character == '?'
-                    || character == '¡'
-                    || character == '¿'
-                    || character == '`'
-                    || character == '´'
-                    || character == '¬') {
+            } else if (character == '\u0040'
+                    || character == '\u00B0'
+                    || character == '\u00AC'
+                    || character == '\u0023'
+                    || character == '\u0024'
+                    || character == '\u003F'
+                    || character == '\u00A1'
+                    || character == '\u00BF'
+                    || character == '\u0060'
+                    || character == '\u00B4') {
 
                 word += character;
             } else if (!Character.isLetter(character)
