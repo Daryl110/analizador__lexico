@@ -39,7 +39,7 @@ jobs:
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
       # checkstyle
-      - check_style: gradle check
+      - run: gradle check
 
       # run tests!
       - run: gradle test
