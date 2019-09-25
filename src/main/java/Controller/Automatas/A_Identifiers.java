@@ -15,17 +15,19 @@ import java.util.regex.Pattern;
  *
  * @author Daryl Ospina
  */
-public class A_Identifiers implements Automata{
+public class A_Identifiers implements Automata {
 
     @Override
     public Lexeme execute(String word, int row, int column) {
-        
+
         Pattern regex = Pattern.compile("^[a-zA-Z]+[a-zA-Z0-9_]*(\\.[a-zA-Z]+[a-zA-Z0-9_]*\\(?.*\\)?\\;?)?");
         Matcher mat = regex.matcher(word);
-        
-        if (mat.matches())return new Lexeme(row, column, word, LexemeTypes.IDENTIFIERS);
-        
+
+        if (mat.matches()) {
+            return new Lexeme(row, column, word, LexemeTypes.IDENTIFIERS);
+        }
+
         return null;
     }
-    
+
 }

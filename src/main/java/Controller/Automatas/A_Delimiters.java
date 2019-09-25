@@ -19,8 +19,6 @@ public class A_Delimiters implements Automata{
     public Lexeme execute(String word, int row, int column) {
         switch (word) {
             case ";":
-            case ",":
-            case ":":
                 return new Lexeme(row, column, word, LexemeTypes.DELIMITERS);
         }
         return null;

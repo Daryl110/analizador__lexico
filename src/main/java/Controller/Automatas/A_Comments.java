@@ -15,12 +15,10 @@ import Model.LexemeTypes;
  */
 public class A_Comments implements Automata {
 
-    @Override
+   @Override
     public Lexeme execute(String word, int row, int column) {
         switch (word) {
-            case "/*":
-            case "*/":
-            case "//":
+            case "~":
                 return new Lexeme(row, column, word, LexemeTypes.COMMENTS);
         }
         return null;

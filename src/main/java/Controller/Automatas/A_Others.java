@@ -16,7 +16,7 @@ import Model.LexemeTypes;
 public class A_Others implements Automata{
     
     @Override
-    public Lexeme execute(String word, int row, int column){
+    public Lexeme execute(String word, int row, int column) {
         switch (word) {
             case "null":
             case "break":
@@ -24,6 +24,8 @@ public class A_Others implements Automata{
             case "NaN":
             case "true":
             case "false":
+            case ",":
+            case ":":
                 return new Lexeme(row, column, word, LexemeTypes.OTHERS);
         }
         return null;

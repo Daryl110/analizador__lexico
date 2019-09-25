@@ -80,9 +80,7 @@ public class LexicalAnalyzer {
             if (word.length() == 1) {
                 column = count - 1;
             }
-
             char character = this.text.charAt(i);
-
             if ((Character.isLetter(character)
                     || Character.isDigit(character)
                     || character == '_'
@@ -95,109 +93,114 @@ public class LexicalAnalyzer {
                     || character == '_'
                     || character == '.') {
                 word += character;
+            } else if (character == '@'
+                    || character == 'Â°'
+                    || character == 'Â¬'
+                    || character == '#'
+                    || character == '$'
+                    || character == '?'
+                    || character == 'Â¡'
+                    || character == 'Â¿'
+                    || character == '`'
+                    || character == 'Â´'
+                    || character == 'Â¬') {
+
+                word += character;
             } else if (!Character.isLetter(character)
                     || !Character.isDigit(character)
                     || character != '_'
                     || character != '.') {
                 if (!word.isEmpty()) {
-                    String example = word + character;
-                    if (example.contains("@")
-                            || example.contains("°")
-                            || example.contains("¬")
-                            || example.contains("#")
-                            || example.contains("$")
-                            || example.contains("?")
-                            || example.contains("¡")
-                            || example.contains("¿")
-                            || example.contains("~")
-                            || example.contains("`")
-                            || example.contains("´")
-                            || example.contains("¬")) {
-                        lexeme = new Lexeme(row, column, word+character, "Error");
-                        this.lexemes.add(lexeme);
-                        lexeme = null;
-                        word = "";
-                        i = i + 1;
-                            count = count + 1;
-                    } else {
+                    if (character == ' ' || !Character.isLetter(character)
+                            || !Character.isDigit(character)
+                            || character != '_'
+                            || character != '.') {
                         validate(lexeme, word, row, column);
+                    } else {
+                        count++;
+                        if (character == '\n') {
+                            validate(lexeme, word, row, column);
+                            row += 1;
+                            count = 0;
+                            continue;
+                        }
                     }
+
                 }
                 column = count;
-                lexeme = this.aDelimiters.execute(character + "", row, column);
+                lexeme = this.a_Comments.execute(character + "", row, column);
                 if (lexeme != null) {
                     this.lexemes.add(lexeme);
                 } else {
-                    lexeme = this.aGroupingSymbols.execute(character + "", row, column);
+                    lexeme = this.aDelimiters.execute(character + "", row, column);
                     if (lexeme != null) {
                         this.lexemes.add(lexeme);
                     } else {
-                        if (character == '%' && this.text.charAt(i + 1) == '='
-                                || character == '+' && this.text.charAt(i + 1) == '='
-                                || character == '-' && this.text.charAt(i + 1) == '='
-                                || character == '*' && this.text.charAt(i + 1) == '='
-                                || character == '/' && this.text.charAt(i + 1) == '=') {
-                            lexeme = this.a_AssignmentOperators.execute(character + "" + this.text.charAt(i + 1), row, column);
-                            i = i + 1;
-                            count = count + 1;
-                        } else if (character == '=' && this.text.charAt(i + 1) == '=') {
-                            lexeme = this.a_RelationalOperators.execute(character + "" + this.text.charAt(i + 1), row, column);
-                            i = i + 1;
-                            count = count + 1;
-                        } else if (lexeme == null && character == '='
-                                && (character == '=')) {
-                            lexeme = this.a_AssignmentOperators.execute(character + "", row, column);
-                        } else if (character == '*' && this.text.charAt(i + 1) == '*'
-                                || character == '-' && this.text.charAt(i + 1) == '-'
-                                || character == '+' && this.text.charAt(i + 1) == '+') {
-                            lexeme = this.a_IncrementalDecrementalOperators.execute(character + "" + this.text.charAt(i + 1), row, column);
-                            i = i + 1;
-                            count = count + 1;
-                        } else if (character == '/' && this.text.charAt(i + 1) == '*'
-                                || character == '*' && this.text.charAt(i + 1) == '/'
-                                || character == '/' && this.text.charAt(i + 1) == '/') {
-                            lexeme = this.a_Comments.execute(character + "" + this.text.charAt(i + 1), row, column);
-                            i = i + 1;
-                            count = count + 1;
-                        }
+                        lexeme = this.aGroupingSymbols.execute(character + "", row, column);
                         if (lexeme != null) {
                             this.lexemes.add(lexeme);
                         } else {
-                            if (character == '!' && this.text.charAt(i + 1) != '=') {
-                                lexeme = this.aLogicalOperators.execute(character + "", row, column);
-                            } else if ((character == '&' && this.text.charAt(i + 1) == '&')
-                                    || (character == '|' && this.text.charAt(i + 1) == '|')) {
-                                lexeme = this.aLogicalOperators.execute(this.text.charAt(i + 1) + "" + character, row, column);
+                            if (character == '%' && this.text.charAt(i + 1) == '='
+                                    || character == '+' && this.text.charAt(i + 1) == '='
+                                    || character == '-' && this.text.charAt(i + 1) == '='
+                                    || character == '*' && this.text.charAt(i + 1) == '='
+                                    || character == '/' && this.text.charAt(i + 1) == '=') {
+                                lexeme = this.a_AssignmentOperators.execute(character + "" + this.text.charAt(i + 1), row, column);
+                                i = i + 1;
+                                count = count + 1;
+                            } else if (character == '=' && this.text.charAt(i + 1) == '=') {
+                                lexeme = this.a_RelationalOperators.execute(character + "" + this.text.charAt(i + 1), row, column);
+                                i = i + 1;
+                                count = count + 1;
+                            } else if (lexeme == null && character == '='
+                                    && (character == '=')) {
+                                lexeme = this.a_AssignmentOperators.execute(character + "", row, column);
+                            } else if (character == '*' && this.text.charAt(i + 1) == '*'
+                                    || character == '-' && this.text.charAt(i + 1) == '-'
+                                    || character == '+' && this.text.charAt(i + 1) == '+') {
+                                lexeme = this.a_IncrementalDecrementalOperators.execute(character + "" + this.text.charAt(i + 1), row, column);
                                 i = i + 1;
                                 count = count + 1;
                             }
                             if (lexeme != null) {
                                 this.lexemes.add(lexeme);
                             } else {
-                                //Operadores relaciones
-                                if (character == '!' && this.text.charAt(i + 1) == '='
-                                        || character == '<' && this.text.charAt(i + 1) == '='
-                                        || character == '>' && this.text.charAt(i + 1) == '='
-                                        || character == '=' && this.text.charAt(i + 1) == '=') {
-                                    lexeme = this.a_RelationalOperators.execute(character + "" + this.text.charAt(i + 1), row, column);
+                                if (character == '!' && this.text.charAt(i + 1) != '=') {
+                                    lexeme = this.aLogicalOperators.execute(character + "", row, column);
+                                } else if ((character == '&' && this.text.charAt(i + 1) == '&')
+                                        || (character == '|' && this.text.charAt(i + 1) == '|')) {
+                                    lexeme = this.aLogicalOperators.execute(this.text.charAt(i + 1) + "" + character, row, column);
                                     i = i + 1;
                                     count = count + 1;
-                                } else if (character == '<' || character == '>') {
-                                    lexeme = this.a_RelationalOperators.execute(character + "", row, column);
                                 }
                                 if (lexeme != null) {
-
                                     this.lexemes.add(lexeme);
                                 } else {
-                                    lexeme = this.aArithmeticOperator.execute(character + "", row, column);
+                                    //Operadores relaciones
+                                    if (character == '!' && this.text.charAt(i + 1) == '='
+                                            || character == '<' && this.text.charAt(i + 1) == '='
+                                            || character == '>' && this.text.charAt(i + 1) == '='
+                                            || character == '=' && this.text.charAt(i + 1) == '=') {
+                                        lexeme = this.a_RelationalOperators.execute(character + "" + this.text.charAt(i + 1), row, column);
+                                        i = i + 1;
+                                        count = count + 1;
+                                    } else if (character == '<' || character == '>') {
+                                        lexeme = this.a_RelationalOperators.execute(character + "", row, column);
+                                    }
                                     if (lexeme != null) {
 
                                         this.lexemes.add(lexeme);
                                     } else {
-                                        lexeme = this.a_String.execute(character + "", row, column);
+                                        lexeme = this.aArithmeticOperator.execute(character + "", row, column);
                                         if (lexeme != null) {
 
                                             this.lexemes.add(lexeme);
+                                        } else {
+                                            lexeme = this.a_String.execute(character + "", row, column);
+                                            if (lexeme != null) {
+
+                                                this.lexemes.add(lexeme);
+                                            }
                                         }
                                     }
                                 }
@@ -216,11 +219,19 @@ public class LexicalAnalyzer {
                                 || (character == '|' && this.text.charAt(i + 1) == '|')) {
                             i = i + 1;
                             count = count + 1;
+                        } else if (this.text.charAt(i + 1) == ' ') {
+                            lexeme = new Lexeme(row, column, word, "Error");
+                            this.lexemes.add(lexeme);
+                            lexeme = null;
+                        } else {
+                            word += character;
+                            count++;
+                            if (character == '\n') {
+                                row += 1;
+                                count = 0;
+                            }
+                            continue;
                         }
-                        lexeme = new Lexeme(row, column, word, "Error");
-                        this.lexemes.add(lexeme);
-                        lexeme = null;
-                        word = "";
                     }
                 }
                 word = "";
@@ -236,6 +247,65 @@ public class LexicalAnalyzer {
                 count = 0;
             }
         }
+        for (int i = 0; i < lexemes.size();) {
+            if (lexemes.get(i).getWord().equals("\"")) {
+                int doomy = i;
+                if (i == (lexemes.size() - 1)) {
+                    throw new RuntimeException("Falta otra comilla doble(\")");
+                } else {
+                    String aux = lexemes.get(doomy).getWord() + "";
+                    i++;
+                    while (i < lexemes.size()) {
+                        if (lexemes.get(i).getWord().equals("\"")) {
+                            aux += lexemes.get(i).getWord();
+                            lexemes.remove(lexemes.get(i));
+                            lexemes.get(doomy).setWord(aux);
+                            i = doomy + 1;
+                            break;
+                        }
+                        aux += lexemes.get(i).getWord() + " ";
+                        lexemes.remove(lexemes.get(i));
+                        if (i >= lexemes.size()) {
+                            throw new RuntimeException("Falta otra comilla doble(\")");
+                        }
+
+                    }
+
+                }
+            } else if (lexemes.get(i).getWord().equals("\'")) {
+                int doomy = i;
+                if (i == (lexemes.size() - 1)) {
+                    throw new RuntimeException("Falta otra comilla simple(\")");
+                }
+                String aux = lexemes.get(doomy).getWord() + "";
+                i++;
+                if (lexemes.get(i).getWord().length() == 1 && lexemes.get(i + 1).getWord().equals("\'")) {
+                    aux += lexemes.get(i).getWord() + "\'";
+                    lexemes.remove(lexemes.get(i));
+                    lexemes.remove(lexemes.get(i));
+                    lexemes.get(doomy).setWord(aux);
+                    i = doomy + 1;
+                } else {
+                    throw new RuntimeException("en las comillas simples solo deden haber caracteres");
+                }
+            } else if (lexemes.get(i).getWord().equals("~")) {
+                lexemes.remove(lexemes.get(i));
+                do {
+                    if (lexemes.get(i).getWord().equals("~")) {
+                        lexemes.remove(lexemes.get(i));
+                        break;
+                    } else {
+                        lexemes.remove(lexemes.get(i));
+                    }
+                } while (i < lexemes.size());
+            } else {
+                i++;
+            }
+        }
+        lexemes.stream().filter((lexeme1) -> (lexeme1.getType().equalsIgnoreCase("Error"))).forEachOrdered((lexeme1) -> {
+            throw new RuntimeException("Caracter in valido en la posicion "
+                    + lexeme1.getRow() + " : " + lexeme1.getColumn());
+        });
         return lexemes;
     }
 
