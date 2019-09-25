@@ -19,17 +19,17 @@ public class A_GroupingSymbols implements Automata{
     public Lexeme execute(String word, int row, int column) {
         switch (word) {
             case "(":
-                return new Lexeme(row, column, word, "Open Parenthesis");
+                return new Lexeme(row, column, word, LexemeTypes.OPEN_PARENTHESIS);
             case ")":
-                return new Lexeme(row, column, word, "Close Parenthesis");
+                return new Lexeme(row, column, word, LexemeTypes.CLOSE_PARENTHESIS);
             case "[":
-                return new Lexeme(row, column, word, "Open Brackets");
+                return new Lexeme(row, column, word, LexemeTypes.OPEN_BRACKETS);
             case "]":
-                return new Lexeme(row, column, word, "Close Brackets");
+                return new Lexeme(row, column, word, LexemeTypes.CLOSE_BRACKETS);
             case "{":
-                return new Lexeme(row, column, word, "Open Braces");
+                return new Lexeme(row, column, word, LexemeTypes.OPEN_BRACES);
             case "}":
-                return new Lexeme(row, column, word, "Close Braces");
+                return new Lexeme(row, column, word, LexemeTypes.CLOSE_BRACES);
                 
         }
         return null;
