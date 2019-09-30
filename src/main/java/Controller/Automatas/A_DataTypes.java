@@ -22,6 +22,7 @@ public class A_DataTypes implements Automata{
             case "char":
             case "number":
             case "boolean":
+            case "Array":
             case "any":
                 return new Lexeme(row, column, word, LexemeTypes.DATA_TYPE);
         }
