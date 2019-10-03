@@ -17,7 +17,12 @@ public class LexemeTypes {
     public static String SELECTIVE_CONTROL_STRUCTURE = "Selective Control Structure";
     public static String DATA_TYPE = "Data Type";
     public static String DELIMITERS = "Delimiters";
-    public static String GROUPING_SYMBOLS = "Grouping Symbols";
+    public static String OPEN_PARENTHESIS = "Open Parenthesis";
+    public static String CLOSE_PARENTHESIS = "Close Parenthesis";
+    public static String OPEN_BRACKETS = "Open Brackets";
+    public static String CLOSE_BRACKETS = "Close Brackets";
+    public static String OPEN_BRACES = "Open Braces";
+    public static String CLOSE_BRACES = "Close Braces";
     public static String ARITHMETIC_OPERATORS = "Arithmetic Operators";
     public static String LOGICAL_OPERATORS = "Logical Operators";
     public static String RELATIONAL_OPERATORS = "Relational Operators";

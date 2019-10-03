@@ -21,7 +21,7 @@ public class A_CommentsTest {
     @Test
     public void testExecuteSuccess() {
         System.out.println("Automata Comentarios (SuccessTest).....");
-        String word = "//";
+        String word = "~";
         
         A_Comments instance = new A_Comments();
         Lexeme result = instance.execute(word, 0, 0);
