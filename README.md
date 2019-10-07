@@ -1,6 +1,7 @@
 # Analizador Lexico
 analizador léxico para realizar el análisis de un lenguaje de programación nuevo.
 
+- <a href="https://github.com/Daryl110/analizador__sintactico">Analizador Sintactico</a>
 - <a href="./src/main/java/Model/LexicalAnalyzer.java">Analizador Lexico</a>
 - <a href="./src/main/java/Controller/API/LexemeController.java">Servicio de API Rest(Retorno de lexemas)</a>
 - <a href="./.circleci/config.yml">CircleCI</a>
